@@ -1,6 +1,9 @@
+//Setup Database
 var mongojs = require('mongojs');
 var db = mongojs('mongodb://admin:admin@ds123312.mlab.com:23312/game', ['account']);
 
+
+//Setup Express
 var express = require('express');
 var app = express();
 var serv = require('http').Server(app);
@@ -19,7 +22,7 @@ serv.listen(process.env.PORT || 2000); //port 2000
 console.log("Server started...");
 
 
-
+//Player Object 
 var Entity = function() {
 
 	var self = { //constructor
@@ -29,7 +32,8 @@ var Entity = function() {
 		speedY: 0,
 		id: "",
 	}
-		
+	
+	//Update player position	
 	self.update = function() { 
 		self.updatePosition();
 	}
@@ -158,6 +162,9 @@ var Player = function(id) {
 }
 
 Player.list = {};
+
+
+
 
 
 Player.onConnect = function(socket) {
